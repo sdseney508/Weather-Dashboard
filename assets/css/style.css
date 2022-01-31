@@ -12,6 +12,10 @@ textarea {
   background: transparent;
 }
 
+.btn-custom{
+
+}
+
 .jumbotron-custom {
   text-align: center;
   background-color: darkblue;
@@ -21,10 +25,30 @@ textarea {
   margin-bottom: 1px;
 }
 
+.weather-icon{
+  width: 40px;
+  height: 40px;
+}
+
+.current-city-card{
+  border: 1px solid black;
+}
+
+.future_wx {
+  background-color: rgb(20, 20, 94);
+  color: white;
+}
+
 .city-custom-card{
   width: 100%;
   background-color: lightgray;
 
+}
+
+.btn-search{
+  width: 100%;
+  background-color: rgb(0, 174, 255);
+  color: white;
 }
 
 .btn-custom{
