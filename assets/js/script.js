@@ -1,6 +1,4 @@
-//variable required
-var latitude;
-var longitude;
+//variables required
 var city = $('#city');
 var city_history = $('#search-history'); // looks for the div id search history.
 var search_history_array = [];
@@ -8,22 +6,23 @@ const api_key = '8af4c9157472ac0e5568eb69c460c7f4';
 var search_button = document.getElementById('city-search-btn');
 var city_curr_title = $('#city-card-name');
 var city_curr_wx_body = $('#city-card-body');
-// var future_wx_cards = $('#future_wx_cards');
 
 function initializePage() {
-    // debugger;
     //initializes the page showing past search history and the WX for the most recently searched city
     let temp_search_array = JSON.parse(localStorage.getItem('searchhistoryarray'));
     search_history_array = temp_search_array || [];
     //rebuild the search history buttons
     buildCityCards(search_history_array);
+    let temp_city_n = search_history_array[0];
+    buildWeatherCards(temp_city_n);
 }
+
 
 search_button.addEventListener('click', function (event) {
     //add a city searched button to the city history buttons list. 
     event.preventDefault();
     console.log("i clicked on the damn search button");
-    // debugger;
+
     //first add the city to the search_history)array.  The city always becomes the first in the array, the array is limited to 10 cities, so it
     //pops the last element in the array if the array length ===10.
 
@@ -77,15 +76,19 @@ search_button.addEventListener('click', function (event) {
 function buildCityCards(s_history_array) {
     for (i = 0; i < s_history_array.length; i++) {
         city_history.append('<button class="button btn-custom m-1" id="' + s_history_array[i] + '">' + s_history_array[i] + '</button>');
+        //research the wx from prior searches.
+        $('#' + s_history_array[i]).on('click', function(event){
+            event.preventDefault();
+            let temp_city_n = this.id;
+            buildWeatherCards(temp_city_n);
+        });
     }
 }
 
 function buildWeatherCards(c_name) {
-    // debugger;
     //clear out old cards and info
     city_curr_wx_body.empty();
     city_curr_title.empty();
-
 
     var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + c_name + '&units=imperial&appid=' + api_key;
     
@@ -118,6 +121,9 @@ function buildWeatherCards(c_name) {
                 else {
                     let day_id = i;
                     let future_wx_cards = $('#day-' + i);
+                    // clear prior search results
+                    future_wx_cards.empty();
+                    // build the cards
                     future_wx_cards.append('<div>'+ wx_date+ '</div>');
                     future_wx_cards.append('<div><img src="http://openweathermap.org/img/wn/' + data.list[i].weather[0].icon
                     + '@2x.png" alt="WX Icon" class="weather-icon"></div>');
@@ -125,15 +131,7 @@ function buildWeatherCards(c_name) {
                     future_wx_cards.append('<div>Wind: ' + winds + '</div>');
                     future_wx_cards.append('<div>Humidity: ' + humidity + ' %</div>');
                 }
-            }
-
-
-//   
-            //build current wx card body
-
-            //build future wx cards
-            console.log(data.list);
-            console.log("wind is: " + data.list[0].weather[0].icon);
+            }   
         });
 }
 
