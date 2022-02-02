@@ -1,17 +1,27 @@
 # Weather-Dashboard
+![image](https://user-images.githubusercontent.com/62141103/152249277-771b338a-f919-4a5c-80c8-71af8d61c463.png)
 
 ## Description
 Displays a simple weather display for cities of interest of the user.  The wx displays the following:
     -Current date / time
+    
     -Current Temp
-    -current Wind
+    
+    -Current Wind
+    
     -Current UV index
+    
     -5 day forecast for
+    
         -Daily hi
+        
         -Daily low
-        -forecasted winds
-        -forecasted wx (sunny, rainy, etc.)
-        -forecasted humidty
+        
+        -Forecasted winds
+        
+        -Forecasted wx (sunny, rainy, etc.)
+        
+        -Forecasted humidty
 
 API Information for the calls can be found at: https://openweathermap.org/api
 
