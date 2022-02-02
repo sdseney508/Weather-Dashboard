@@ -28,16 +28,13 @@ search_button.addEventListener('click', function (event) {
     //first add the city to the search_history)array.  The city always becomes the first in the array, the array is limited to 10 cities, so it
     //pops the last element in the array if the array length ===10.
 
-    //grab the DOM element to create the buttons.
-
     //assign the cityname val to a variable so it can be used in the search_history_array below.  Make first letters capital.
     var temp_cityname = city.val();
     var cityname = temp_cityname.toLowerCase()
         .split(' ')
         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
         .join(' ');
-    //see:  https://stackoverflow.com/questions/4878756/how-to-capitalize-first-letter-of-each-word-like-a-2-word-city for explanation of new function in ES5 and beyond
-
+    
     let poss_check = false;
 
     //first check to see if the city name is already in the array, if it is, still pull up the search, but dont add it to the array.
@@ -143,10 +140,20 @@ function buildWeatherCards(c_name) {
 
                         if (i === 0) {
                             var temp = data.current.temp;
-                            city_curr_wx_body.append('<h5>Temp: ' + temp + '</h5>');
+                            city_curr_wx_body.append('<h5>Current Temp: ' + temp + '</h5>');
                             city_curr_wx_body.append('<h5>Wind: ' + winds + ' MPH</h5>');
                             city_curr_wx_body.append('<h5>Humidity: ' + humidity + ' %</h5>');
-                            city_curr_wx_body.append('<h5>UV Index: ' + uv_ind + '</h5>'); //if i have time make this a box with color dependent upon the uvi returned:  green for 0 - 0.50; yellow 0.51- 0.75; then red
+                            if(uv_ind <= .5){
+                                uvi_class = 'uvi-box-good';
+                            }
+                            else if (uv_ind <= .75){
+                                uvi_class = 'uvi-box-ok';
+                            }
+                            else {
+                                uvi_class = 'uvi-box-bad';
+                            }
+                            city_curr_wx_body.append('<div :');
+                            city_curr_wx_body.append('<h5>UV Index:<div class="' + uvi_class + '">' + uv_ind + '</div></h5>'); 
                         }
                         else {
                             let day_id = i;

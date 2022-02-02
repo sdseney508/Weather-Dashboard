@@ -25,6 +25,24 @@ textarea {
   margin-bottom: 1px;
 }
 
+.uvi-box-good{
+  height: 30px;
+  width: 45px;
+  background-color: green;
+}
+
+.uvi-box-ok{
+  height: 30px;
+  width: 45px;
+  background-color: yellow;
+}
+
+.uvi-box-bad{
+  height: 30px;
+  width: 45px;
+  background-color: red;
+}
+
 .weather-icon{
   width: 40px;
   height: 40px;
