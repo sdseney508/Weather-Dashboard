@@ -102,8 +102,8 @@ function buildWeatherCards(c_name) {
         })
         .then(function (data) {
   
-            latitude = data[0].lat;
-            longitude = data[0].lon;
+            var latitude = data[0].lat;
+            var longitude = data[0].lon;
             console.log(latitude);
             console.log(longitude);
             var url = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + latitude + '&lon=' + longitude + '&units=imperial&appid=' + api_key;
